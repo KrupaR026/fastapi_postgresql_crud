@@ -2,7 +2,7 @@ from fastapi import APIRouter, status
 from server.schemas.entry import EntryDetails
 from server.database import SessionLocal
 from server.model.entry import Entry
-# from typing import List
+from datetime import datetime
 
 
 entryRouter = APIRouter()
@@ -38,7 +38,7 @@ def get_entry(id: int):
 @entryRouter.put('/entry/{id}', status_code=status.HTTP_200_OK)
 def update_entry(id: int, entry:EntryDetails):
     entry_to_update = db.query(Entry).filter(Entry.id == id).first()
-    # user_to_update.updated_at = datetime.datetime.now()
+    entry_to_update.updated_at = datetime.now()
     # entry_to_update.id = entry.id,
     entry_to_update.title = entry.title,
     entry_to_update.topic = entry.topic,

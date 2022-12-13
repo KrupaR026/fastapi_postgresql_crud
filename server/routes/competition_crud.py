@@ -2,6 +2,7 @@ from fastapi import APIRouter, status
 from server.schemas.competition import CompetitionDetails
 from server.database import SessionLocal
 from server.model.competition import Competition
+from datetime import datetime
 
 
 competitionRouter = APIRouter()
@@ -36,7 +37,7 @@ def get_competition(id: int):
 @competitionRouter.put('/competition/{id}', status_code=status.HTTP_200_OK)
 def update_competition(id: int, competition:CompetitionDetails):
     competition_to_update = db.query(Competition).filter(Competition.id == id).first()
-    # competition_to_update.updated_at = datetime.datetime.now()
+    competition_to_update.updated_at = datetime.now()
     # competition_to_update.id = competition.id,
     competition_to_update.name = competition.name,
     competition_to_update.description = competition.description

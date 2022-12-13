@@ -2,6 +2,7 @@ from fastapi import APIRouter, status
 from server.schemas.user import UserCreation
 from server.database import SessionLocal
 from server.model.user import User
+from datetime import datetime
 
 
 userRouter = APIRouter()
@@ -36,7 +37,7 @@ def get_user(id: int):
 @userRouter.put('/user/{id}', status_code=status.HTTP_200_OK)
 def update_user(id: int, user:UserCreation):
     user_to_update = db.query(User).filter(User.id == id).first()
-    # user_to_update.updated_at = datetime.datetime.now()
+    user_to_update.updated_at = datetime.now()
     # user_to_update.id = user.id,
     user_to_update.name = user.name,
     user_to_update.birth_date = user.birth_date,
