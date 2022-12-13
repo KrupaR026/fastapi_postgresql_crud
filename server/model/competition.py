@@ -11,4 +11,3 @@ class Competition(base, Temp):
     status = Column(Boolean, default = True)
     description = Column(Text)
     user_id = Column(Integer, ForeignKey(User.id))
-

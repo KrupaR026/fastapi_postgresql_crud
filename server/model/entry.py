@@ -12,4 +12,3 @@ class Entry(base, Temp):
     state = Column(String)
     country = Column(String)
     competition_id = Column(Integer, ForeignKey(Competition.id))
-

@@ -16,6 +16,7 @@ def create(competition: CompetitionDetails):
         name = competition.name,
         # status = competition.status,
         description = competition.description,
+        user_id = competition.user_id,
     )
     db.add(new_competition)
     db.commit()
@@ -41,6 +42,7 @@ def update_competition(id: int, competition:CompetitionDetails):
     # competition_to_update.id = competition.id,
     competition_to_update.name = competition.name,
     competition_to_update.description = competition.description
+    competition_to_update.user_id = competition.user_id
 
     db.commit()
     return {"message": "competition updated successfully"}

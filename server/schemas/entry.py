@@ -6,6 +6,7 @@ class EntryDetails(BaseModel):
     topic: str
     state: str
     country: str
+    competition_id: int
 
     class Config:
         orm_mode = True

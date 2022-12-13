@@ -17,6 +17,7 @@ def create_entry(entry: EntryDetails):
         topic = entry.topic,
         state = entry.state,
         country = entry.country,
+        competition_id = entry.competition_id,
     )
     db.add(new_entry)
     db.commit()
@@ -39,11 +40,11 @@ def get_entry(id: int):
 def update_entry(id: int, entry:EntryDetails):
     entry_to_update = db.query(Entry).filter(Entry.id == id).first()
     entry_to_update.updated_at = datetime.now()
-    # entry_to_update.id = entry.id,
     entry_to_update.title = entry.title,
     entry_to_update.topic = entry.topic,
     entry_to_update.state = entry.state,
     entry_to_update.country = entry.country,
+    entry_to_update.competition_id = entry.competition_id
 
     db.commit()
     return {"message": "entry updated successfully"}
