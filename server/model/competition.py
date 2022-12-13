@@ -4,6 +4,7 @@ from server.model.user import User
 from server.utils.temp_model import Temp
 
 
+# Create the competition model table
 class Competition(base, Temp):
     __tablename__ = "competition"
     id = Column(Integer, primary_key=True)

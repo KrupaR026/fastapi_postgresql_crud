@@ -8,6 +8,7 @@ count_entry = APIRouter()
 db = SessionLocal()
 
 
+# Get method to get the total number of entry of particular user
 @count_entry.get('/total_competition/{id}')
 def get_total_competition(id: int):
 
