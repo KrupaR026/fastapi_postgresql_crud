@@ -43,7 +43,7 @@ def get_entry():
 
 
 @entryRouter.get("/entry/{id}", status_code=status.HTTP_200_OK)
-def get_entry_by_id(id: int):
+def get_entry_by_id(id: str):
     """Get method to get the particular entry by id
 
     Args:
@@ -57,7 +57,7 @@ def get_entry_by_id(id: int):
 
 
 @entryRouter.put("/entry/{id}", status_code=status.HTTP_200_OK)
-def update_entry(id: int, entry: EntryDetails):
+def update_entry(id: str, entry: EntryDetails):
     """Put method to update the exixting entry by id
 
     Args:
@@ -80,7 +80,7 @@ def update_entry(id: int, entry: EntryDetails):
 
 
 @entryRouter.delete("/entry/{id}")
-def delete_entry(id: int):
+def delete_entry(id: str):
     """Delete method to delete a entry by id
 
     Args:

@@ -42,7 +42,7 @@ def get_competition():
 
 
 @competitionRouter.get("/competition/{id}", status_code=status.HTTP_200_OK)
-def get_competition_by_id(id: int):
+def get_competition_by_id(id: str):
     """Get method to get the particular competition by id
 
     Args:
@@ -56,7 +56,7 @@ def get_competition_by_id(id: int):
 
 
 @competitionRouter.put("/competition/{id}", status_code=status.HTTP_200_OK)
-def update_competition(id: int, competition: CompetitionDetails):
+def update_competition(id: str, competition: CompetitionDetails):
     """Put method to update the exixting competition by id
 
     Args:
@@ -77,7 +77,7 @@ def update_competition(id: int, competition: CompetitionDetails):
 
 
 @competitionRouter.delete("/competition/{id}")
-def delete_competition(id: int):
+def delete_competition(id: str):
     """Delete method to delete a competition by id
 
     Args:

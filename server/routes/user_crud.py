@@ -4,6 +4,8 @@ from server.database import SessionLocal
 from server.model.user import User
 from datetime import datetime
 
+# from uuid import UUID
+
 
 userRouter = APIRouter()
 db = SessionLocal()
@@ -20,6 +22,7 @@ def create(user: UserCreation):
         _type_: _description_
     """
     new_user = User(
+        # id = UUID
         name=user.name,
         birth_date=user.birth_date,
         gender=user.gender,
@@ -42,7 +45,7 @@ def get_user():
 
 
 @userRouter.get("/user/{id}", status_code=status.HTTP_200_OK)
-def get_user_by_id(id: int):
+def get_user_by_id(id: str):
     """Get method to get the particular user by id
 
     Args:
@@ -56,7 +59,7 @@ def get_user_by_id(id: int):
 
 
 @userRouter.put("/user/{id}", status_code=status.HTTP_200_OK)
-def update_user(id: int, user: UserCreation):
+def update_user(id: str, user: UserCreation):
     """Put method to update the exixting user by id
 
     Args:
@@ -77,7 +80,7 @@ def update_user(id: int, user: UserCreation):
 
 
 @userRouter.delete("/user/{id}")
-def delete_user(id: int):
+def delete_user(id: str):
     """Delete method to delete a user by id
 
     Args:
