@@ -42,7 +42,7 @@ def get_competition():
 
 
 @competitionRouter.get("/competition/{id}", status_code=status.HTTP_200_OK)
-def get_competition(id: int):
+def get_competition_by_id(id: int):
     """Get method to get the particular competition by id
 
     Args:
@@ -51,7 +51,7 @@ def get_competition(id: int):
     Returns:
         _type_: _description_
     """
-    competition = get_competitions(id).first()
+    competition = filter_competitions(id).first()
     return competition
 
 
@@ -66,7 +66,7 @@ def update_competition(id: int, competition: CompetitionDetails):
     Returns:
         _type_: _description_
     """
-    competition_to_update = get_competitions(id).first()
+    competition_to_update = filter_competitions(id).first()
     competition_to_update.updated_at = datetime.now()
     competition_to_update.name = (competition.name,)
     competition_to_update.description = competition.description
@@ -86,14 +86,13 @@ def delete_competition(id: int):
     Returns:
         _type_: _description_
     """
-    # competition_to_delete = db.query(Competition).filter(Competition.id == id).first()
-    competition_to_delete = get_competitions(id).first()
+    competition_to_delete = filter_competitions(id).first()
     db.delete(competition_to_delete)
     db.commit()
 
     return {"data": competition_to_delete, "message": "delete successfully"}
 
 
-def get_competitions(id):
+def filter_competitions(id):
 
     return db.query(Competition).filter(Competition.id == id)

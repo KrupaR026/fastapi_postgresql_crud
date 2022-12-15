@@ -1,5 +1,5 @@
 from server.database import base
-from sqlalchemy import Column, String, Integer, Date, DateTime, Boolean
+from sqlalchemy import Column, String, Integer, Date
 from server.utils.temp_model import Temp
 
 

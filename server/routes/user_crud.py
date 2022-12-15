@@ -42,7 +42,7 @@ def get_user():
 
 
 @userRouter.get("/user/{id}", status_code=status.HTTP_200_OK)
-def get_user(id: int):
+def get_user_by_id(id: int):
     """Get method to get the particular user by id
 
     Args:
@@ -51,7 +51,7 @@ def get_user(id: int):
     Returns:
         _type_: _description_
     """
-    user = get_users(id).first()
+    user = filter_users(id).first()
     return user
 
 
@@ -66,7 +66,7 @@ def update_user(id: int, user: UserCreation):
     Returns:
         _type_: _description_
     """
-    user_to_update = get_users(id).first()
+    user_to_update = filter_users(id).first()
     user_to_update.updated_at = datetime.now()
     user_to_update.name = (user.name,)
     user_to_update.birth_date = (user.birth_date,)
@@ -86,13 +86,13 @@ def delete_user(id: int):
     Returns:
         _type_: _description_
     """
-    user_to_delete = get_users(id).first()
+    user_to_delete = filter_users(id).first()
     db.delete(user_to_delete)
     db.commit()
 
     return {"data": user_to_delete, "message": "User delete successfully"}
 
 
-def get_users(id):
+def filter_users(id):
 
     return db.query(User).filter(User.id == id)

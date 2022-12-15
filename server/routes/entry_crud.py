@@ -43,7 +43,7 @@ def get_entry():
 
 
 @entryRouter.get("/entry/{id}", status_code=status.HTTP_200_OK)
-def get_entry(id: int):
+def get_entry_by_id(id: int):
     """Get method to get the particular entry by id
 
     Args:
@@ -52,7 +52,7 @@ def get_entry(id: int):
     Returns:
         _type_: _description_
     """
-    entry = db.get_entry(id).first()
+    entry = filter_entry(id).first()
     return entry
 
 
@@ -67,7 +67,7 @@ def update_entry(id: int, entry: EntryDetails):
     Returns:
         _type_: _description_
     """
-    entry_to_update = get_entry(id).first()
+    entry_to_update = filter_entry(id).first()
     entry_to_update.updated_at = datetime.now()
     entry_to_update.title = (entry.title,)
     entry_to_update.topic = (entry.topic,)
@@ -89,13 +89,13 @@ def delete_entry(id: int):
     Returns:
         _type_: _description_
     """
-    entry_to_delete = get_entry(id).first()
+    entry_to_delete = filter_entry(id).first()
     db.delete(entry_to_delete)
     db.commit()
 
     return {"data": entry_to_delete, "message": "Ad delete successfully"}
 
 
-def get_entry(id):
+def filter_entry(id):
 
     return db.query(Entry).filter(Entry.id == id)
