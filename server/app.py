@@ -7,9 +7,14 @@ from server.routes.count_entry_api import count_entry
 app = FastAPI()
 
 
-@app.get('/')
+@app.get("/")
 def home():
-    return {"data":"you are at the home page"}
+    """simple home page routes
+
+    Returns:
+        _type_: _description_
+    """
+    return {"data": "you are at the home page"}
 
 
 app.include_router(userRouter, tags=["User"])

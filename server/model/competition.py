@@ -4,11 +4,15 @@ from server.model.user import User
 from server.utils.temp_model import Temp
 
 
-# Create the competition model table
+"""
+Create the competition model table
+"""
+
+
 class Competition(base, Temp):
     __tablename__ = "competition"
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    status = Column(Boolean, default = True)
+    status = Column(Boolean, default=True)
     description = Column(Text)
     user_id = Column(Integer, ForeignKey(User.id))

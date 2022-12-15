@@ -4,7 +4,11 @@ from server.model.competition import Competition
 from server.utils.temp_model import Temp
 
 
-# Create the entry model table
+"""
+Create the entry model table
+"""
+
+
 class Entry(base, Temp):
     __tablename__ = "entry"
     id = Column(Integer, primary_key=True)
